@@ -15,7 +15,7 @@ module load gcc/10.2.0/npcyll4
 module load openmpi/4.1.1
 module load slurm
 
-name='torch_2'
+name='torch_3'
 
 n_start=40000
 n_end=50000
