@@ -2,6 +2,7 @@
 #SBATCH --job-name="write"
 #SBATCH --output="out.write"
 #SBATCH --partition=debug
+#SBATCH --constraint="lustre"
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=8G
@@ -20,7 +21,7 @@ name='torch_3'
 n_start=40000
 n_end=50000
 
-twojmax=8  # fun
+twojmax=8
 rcutfac=1.0
 wj=1.0
 radelem=3.0
