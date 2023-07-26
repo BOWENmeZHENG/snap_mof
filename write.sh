@@ -16,15 +16,15 @@ module load gcc/10.2.0/npcyll4
 module load openmpi/4.1.1
 module load slurm
 
-name='torch_3'
+name='torch_3_4A_20k'
 
-n_start=40000
+n_start=30000
 n_end=50000
 
 twojmax=8
 rcutfac=1.0
 wj=1.0
-radelem=3.0
+radelem=2.0
 wselfallflag=1
 chemflag=0
 bzeroflag=1
@@ -43,9 +43,9 @@ fweight=10.0
 partition_ML='compute'
 nodes_ML=1
 ntaskspernode_ML=4
-mem_ML=128
+mem_ML=160
 account_ML='ucb321'
-time_ML=25
+time_ML=27
 np_ML=4
 
 dt=0.0005

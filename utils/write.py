@@ -111,7 +111,7 @@ def md_in(name, dt, TDAMP, run_steps):
         f_md.write('boundary        p p p\n')
         f_md.write('atom_style      atomic\n')
         f_md.write('neighbor        2.0 bin\n')
-        f_md.write('neigh_modify    every 10 delay 0 check no\n')
+        f_md.write('neigh_modify    every 4 delay 0 check no\n')
         f_md.write('read_data	mof_1co2.data\n')
         f_md.write('mass        1 24\n')
         f_md.write('mass        2 16\n')
