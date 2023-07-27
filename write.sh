@@ -16,7 +16,7 @@ module load gcc/10.2.0/npcyll4
 module load openmpi/4.1.1
 module load slurm
 
-name='torch_3_4A_20k'
+name='6.5A'
 
 n_start=30000
 n_end=50000
@@ -48,7 +48,7 @@ account_ML='ucb321'
 time_ML=27
 np_ML=4
 
-dt=0.0005
+dt=0.001
 TDAMP=10
 run_steps=200000
 
