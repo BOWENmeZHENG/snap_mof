@@ -103,7 +103,7 @@ def ml_sh(name, partition_ML, nodes_ML, ntaskspernode_ML, mem_ML, account_ML, ti
         f_sh.write('\n')
         
         
-def md_in(name, dt, TDAMP, run_steps):
+def md_in(name, dt, TDAMP, CO2, run_steps):
     with open(f'in.{name}', 'w') as f_md:
         f_md.write('#\n')
         f_md.write('\n')
@@ -119,6 +119,9 @@ def md_in(name, dt, TDAMP, run_steps):
         f_md.write('mass        4 1\n')
         f_md.write('mass        5 12\n')
         f_md.write('mass        6 16\n')
+        if CO2 == 0:
+            f_md.write('group       CO2 type 5 6\n')
+            f_md.write('delete_atoms group CO2\n')
         f_md.write('\n')
         f_md.write('include MOF_pot.mod\n')
         f_md.write('\n')

@@ -51,6 +51,7 @@ np_ML=4
 dt=0.001
 TDAMP=10
 run_steps=200000
+CO2=0
 
 partition_MD='compute'
 nodes_MD=4
@@ -76,7 +77,7 @@ $n_start, $n_end, $training_size, $testing_size, $eweight, $fweight); \
 write.ml_sh('$name',\
 '$partition_ML', $nodes_ML, $ntaskspernode_ML, $mem_ML, '$account_ML', $time_ML, $np_ML) \
 
-write.md_in('$name', $dt, $TDAMP, $run_steps) \
+write.md_in('$name', $dt, $TDAMP, $run_steps, $CO2) \
 
 write.md_sh('$name',\
 '$partition_MD', $nodes_MD, $ntaskspernode_MD, $mem_MD, '$account_MD', $time_MD, $np_MD) \
