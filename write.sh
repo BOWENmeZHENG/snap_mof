@@ -67,21 +67,21 @@ mkdir -p runs/$name
 srun --mpi=pmi2 -n 1 python -c "from utils import data; data.trj2jsons($n_start, $n_end)"
 
 srun --mpi=pmi2 -n 1 python -c \
-"from utils import write; \
+"from utils import write 
 
-write.ml_in('$name', '$loaded_pt', \
-$twojmax, $rcutfac, $wj, \
-$wselfallflag, $chemflag, $bzeroflag, $quadraticflag, $bikflag, \
-$layer_sizes, $learning_rate, $num_epochs, $batch_size, $multi_element_option, \
-$n_start, $n_end, $training_size, $testing_size, $eweight, $fweight); \
+write.ml_in('$name', '$loaded_pt', 
+$twojmax, $rcutfac, $wj, 
+$wselfallflag, $chemflag, $bzeroflag, $quadraticflag, $bikflag, 
+$layer_sizes, $learning_rate, $num_epochs, $batch_size, $multi_element_option, 
+$n_start, $n_end, $training_size, $testing_size, $eweight, $fweight) 
 
-write.ml_sh('$name',\
-'$partition_ML', $nodes_ML, $ntaskspernode_ML, $mem_ML, '$account_ML', $time_ML, $np_ML) \
+write.ml_sh('$name',
+'$partition_ML', $nodes_ML, $ntaskspernode_ML, $mem_ML, '$account_ML', $time_ML, $np_ML) 
 
-write.md_in('$name', $dt, $TDAMP, $run_steps, $CO2) \
+write.md_in('$name', $dt, $TDAMP, $run_steps, $CO2) 
 
-write.md_sh('$name',\
-'$partition_MD', $nodes_MD, $ntaskspernode_MD, $mem_MD, '$account_MD', $time_MD, $np_MD) \
+write.md_sh('$name',
+'$partition_MD', $nodes_MD, $ntaskspernode_MD, $mem_MD, '$account_MD', $time_MD, $np_MD) 
 "
 
 cp src_files/mof_1co2.data runs/$name/mof_1co2.data
