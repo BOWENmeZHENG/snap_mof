@@ -16,7 +16,7 @@ module load gcc/10.2.0/npcyll4
 module load openmpi/4.1.1
 module load slurm
 
-name='6.5A'
+name='6.5A_s1'
 
 n_start=30000
 n_end=50000
@@ -31,8 +31,8 @@ bzeroflag=1
 quadraticflag=0
 bikflag=1
 layer_sizes='[64, 64, 32]'
-learning_rate=0.00015
-num_epochs=400
+learning_rate=0.001
+num_epochs=50
 batch_size=1
 multi_element_option=2
 training_size=0.95
@@ -45,7 +45,7 @@ nodes_ML=1
 ntaskspernode_ML=4
 mem_ML=160
 account_ML='ucb321'
-time_ML=27
+time_ML=17
 np_ML=4
 
 dt=0.001
