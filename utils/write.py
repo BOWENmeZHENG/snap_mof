@@ -46,7 +46,7 @@ def ml_in(name, loaded_pt,
         f_in.write(f'batch_size = {batch_size}\n')
         if loaded_pt != 'None':
             f_in.write(f'save_state_input = ../{loaded_pt}/MOF_Pytorch_{loaded_pt}.pt\n')
-        f_in.write('save_state_output = MOF_Pytorch_{name}.pt\n')
+        f_in.write(f'save_state_output = MOF_Pytorch_{name}.pt\n')
         f_in.write(f'multi_element_option = {multi_element_option}\n')
         f_in.write('\n')
         f_in.write('[SOLVER]\n')

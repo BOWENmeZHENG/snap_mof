@@ -17,7 +17,7 @@ module load openmpi/4.1.1
 module load slurm
 
 name='6.5A_s2'
-loaded_pt='None'
+loaded_pt='6.5A_s1'
 
 n_start=0
 n_end=10000
