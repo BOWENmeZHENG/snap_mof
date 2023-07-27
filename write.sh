@@ -16,10 +16,11 @@ module load gcc/10.2.0/npcyll4
 module load openmpi/4.1.1
 module load slurm
 
-name='6.5A_s1'
+name='6.5A_s2'
+loaded_pt='None'
 
-n_start=30000
-n_end=50000
+n_start=0
+n_end=10000
 
 twojmax=8
 rcutfac=6.5
@@ -68,7 +69,7 @@ srun --mpi=pmi2 -n 1 python -c "from utils import data; data.trj2jsons($n_start,
 srun --mpi=pmi2 -n 1 python -c \
 "from utils import write; \
 
-write.ml_in('$name',
+write.ml_in('$name', '$loaded_pt', \
 $twojmax, $rcutfac, $wj, \
 $wselfallflag, $chemflag, $bzeroflag, $quadraticflag, $bikflag, \
 $layer_sizes, $learning_rate, $num_epochs, $batch_size, $multi_element_option, \

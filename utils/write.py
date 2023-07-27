@@ -1,4 +1,4 @@
-def ml_in(name,
+def ml_in(name, loaded_pt,
           twojmax, rcutfac, wj,  
           wselfallflag, chemflag, bzeroflag, quadraticflag, bikflag,
           layer_sizes: list, learning_rate, num_epochs, batch_size, multi_element_option,
@@ -44,7 +44,9 @@ def ml_in(name,
         f_in.write(f'learning_rate = {learning_rate}\n')
         f_in.write(f'num_epochs = {num_epochs}\n')
         f_in.write(f'batch_size = {batch_size}\n')
-        f_in.write('save_state_output = MOF_Pytorch.pt\n')
+        if loaded_pt != 'None':
+            f_in.write(f'save_state_input = ../{loaded_pt}/MOF_Pytorch_{loaded_pt}.pt\n')
+        f_in.write('save_state_output = MOF_Pytorch_{name}.pt\n')
         f_in.write(f'multi_element_option = {multi_element_option}\n')
         f_in.write('\n')
         f_in.write('[SOLVER]\n')
