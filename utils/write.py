@@ -1,5 +1,5 @@
 def ml_in(name,
-          twojmax, rcutfac, wj, radelem, 
+          twojmax, rcutfac, wj,  
           wselfallflag, chemflag, bzeroflag, quadraticflag, bikflag,
           layer_sizes: list, learning_rate, num_epochs, batch_size, multi_element_option,
           n_start, n_end, training_size, testing_size, eweight, fweight):
@@ -11,7 +11,7 @@ def ml_in(name,
         f_in.write('rfac0 = 0.99363\n')
         f_in.write('rmin0 = 0.0\n')
         f_in.write(f'wj = {wj} {wj} {wj} {wj} {wj} {wj}\n')
-        f_in.write(f'radelem = {radelem} {radelem} {radelem} {radelem} {radelem} {radelem}\n')
+        f_in.write('radelem = 0.5 0.5 0.5 0.5 0.5 0.5\n')
         f_in.write('type = Mg O C H CC OO\n')
         f_in.write(f'wselfallflag = {wselfallflag}\n')
         f_in.write(f'chemflag = {chemflag}\n')

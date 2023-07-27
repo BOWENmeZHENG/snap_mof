@@ -22,9 +22,9 @@ n_start=30000
 n_end=50000
 
 twojmax=8
-rcutfac=1.0
+rcutfac=6.5
 wj=1.0
-radelem=2.0
+# radelem=2.0
 wselfallflag=1
 chemflag=0
 bzeroflag=1
@@ -68,7 +68,7 @@ srun --mpi=pmi2 -n 1 python -c \
 "from utils import write; \
 
 write.ml_in('$name',
-$twojmax, $rcutfac, $wj, $radelem,\
+$twojmax, $rcutfac, $wj, \
 $wselfallflag, $chemflag, $bzeroflag, $quadraticflag, $bikflag, \
 $layer_sizes, $learning_rate, $num_epochs, $batch_size, $multi_element_option, \
 $n_start, $n_end, $training_size, $testing_size, $eweight, $fweight); \
