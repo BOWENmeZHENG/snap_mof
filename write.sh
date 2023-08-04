@@ -16,35 +16,34 @@ module load gcc/10.2.0/npcyll4
 module load openmpi/4.1.1
 module load slurm
 
-name='4.0A_s2'
-loaded_pt='4.0A_s1'
+name='4.0A_revisit_10k'
+loaded_pt='None'
 
-n_start=30000
-n_end=60000
+n_start=0
+n_end=10000
 
 twojmax=8
 rcutfac=4.0
 wj=1.0
-# radelem=2.0
 wselfallflag=1
 chemflag=0
 bzeroflag=1
 quadraticflag=0
 bikflag=1
-layer_sizes='[64, 64, 64]'
-learning_rate=0.000025
-num_epochs=100
+layer_sizes='[64, 64]'
+learning_rate=0.00001
+num_epochs=200
 batch_size=1
 multi_element_option=2
 training_size=0.95
 testing_size=0.05
-eweight=1.0
+eweight=0.1
 fweight=10.0
 
 partition_ML='compute'
 nodes_ML=1
 ntaskspernode_ML=4
-mem_ML=190
+mem_ML=150
 account_ML='ucb321'
 time_ML=27
 np_ML=4
@@ -52,7 +51,6 @@ np_ML=4
 dt=0.001
 TDAMP=10
 run_steps=200000
-# CO2=0
 
 partition_MD='compute'
 nodes_MD=4
@@ -84,7 +82,7 @@ write.md_sh('$name',
 '$partition_MD', $nodes_MD, $ntaskspernode_MD, $mem_MD, '$account_MD', $time_MD, $np_MD) 
 "
 
-cp src_files/mof_1co2.data runs/$name/mof_1co2.data
+cp src_files/mof_1co2_corner.data runs/$name/mof_1co2_corner.data
 mv *ML.sh *ML.in *MD.sh in.* out.write runs/$name/
 cp write.sh runs/$name/write.sh
 
