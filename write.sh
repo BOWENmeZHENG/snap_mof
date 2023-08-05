@@ -16,14 +16,14 @@ module load gcc/10.2.0/npcyll4
 module load openmpi/4.1.1
 module load slurm
 
-name='4.0A_revisit_10k'
+name='3.5A_15k'
 loaded_pt='None'
 
 n_start=0
-n_end=10000
+n_end=15000
 
 twojmax=8
-rcutfac=4.0
+rcutfac=3.5
 wj=1.0
 wselfallflag=1
 chemflag=0
@@ -31,7 +31,7 @@ bzeroflag=1
 quadraticflag=0
 bikflag=1
 layer_sizes='[64, 64]'
-learning_rate=0.00001
+learning_rate=0.0001
 num_epochs=200
 batch_size=1
 multi_element_option=2
