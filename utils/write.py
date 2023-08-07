@@ -87,6 +87,8 @@ def ml_sh(name, partition_ML, nodes_ML, ntaskspernode_ML, mem_ML, account_ML, ti
         f_sh.write(f'#SBATCH --job-name="{name}_ML"\n')
         f_sh.write(f'#SBATCH --output="out.{name}_ML"\n')
         f_sh.write(f'#SBATCH --partition={partition_ML}\n')
+        if partition_ML == 'gpu':
+            f_sh.write('#SBATCH --gpus=1\n')
         f_sh.write('#SBATCH --constraint="lustre"\n')
         f_sh.write(f'#SBATCH --nodes={nodes_ML}\n')
         f_sh.write(f'#SBATCH --ntasks-per-node={ntaskspernode_ML}\n')
@@ -96,12 +98,18 @@ def ml_sh(name, partition_ML, nodes_ML, ntaskspernode_ML, mem_ML, account_ML, ti
         f_sh.write(f'#SBATCH -t {time_ML}:00:00\n')
         f_sh.write('\n')
         f_sh.write('module purge\n')
-        f_sh.write('module load cpu\n')
-        f_sh.write('module load gcc/10.2.0/npcyll4\n')
-        f_sh.write('module load openmpi/4.1.1\n')
+        if partition_ML == 'gpu':
+            f_sh.write('module load gpu\n')
+        else:
+            f_sh.write('module load cpu\n')
+            f_sh.write('module load gcc/10.2.0/npcyll4\n')
+            f_sh.write('module load openmpi/4.1.1\n')
         f_sh.write('module load slurm\n')
         f_sh.write('\n')
-        f_sh.write(f'mpirun -np {np_ML} python -m fitsnap3 {name}_ML.in --overwrite\n')
+        if partition_ML == 'gpu':
+            f_sh.write(f'python -m fitsnap3 {name}_ML.in --overwrite\n')
+        else:
+            f_sh.write(f'mpirun -np {np_ML} python -m fitsnap3 {name}_ML.in --overwrite\n')
         f_sh.write('\n')
         
         
@@ -185,6 +193,8 @@ def md_sh(name, partition_MD, nodes_MD, ntaskspernode_MD, mem_MD, account_MD, ti
         f_sh.write(f'#SBATCH --job-name="{name}_MD"\n')
         f_sh.write(f'#SBATCH --output="out.{name}_MD"\n')
         f_sh.write(f'#SBATCH --partition={partition_MD}\n')
+        if partition_ML == 'gpu':
+            f_sh.write('#SBATCH --gpus=1\n')
         f_sh.write('#SBATCH --constraint="lustre"\n')
         f_sh.write(f'#SBATCH --nodes={nodes_MD}\n')
         f_sh.write(f'#SBATCH --ntasks-per-node={ntaskspernode_MD}\n')
@@ -194,18 +204,26 @@ def md_sh(name, partition_MD, nodes_MD, ntaskspernode_MD, mem_MD, account_MD, ti
         f_sh.write(f'#SBATCH -t {time_MD}:00:00\n')
         f_sh.write('\n')
         f_sh.write('module purge\n')
-        f_sh.write('module load cpu\n')
-        f_sh.write('module load gcc/10.2.0/npcyll4\n')
-        f_sh.write('module load openmpi/4.1.1\n')
+        if partition_ML == 'gpu':
+            f_sh.write('module load gpu\n')
+        else:
+            f_sh.write('module load cpu\n')
+            f_sh.write('module load gcc/10.2.0/npcyll4\n')
+            f_sh.write('module load openmpi/4.1.1\n')
         f_sh.write('module load slurm\n')
         f_sh.write('\n')
-        f_sh.write(f'mpirun -np {np_MD} lmp -in in.{name}\n')
+        if partition_ML == 'gpu':
+            f_sh.write(f'lmp -in in.{name}\n')
+        else:
+            f_sh.write(f'mpirun -np {np_MD} lmp -in in.{name}\n')
         f_sh.write('\n')
     with open(f'{name}_no_CO2_MD.sh', 'w') as f_sh:
         f_sh.write('#!/bin/bash\n')
         f_sh.write(f'#SBATCH --job-name="{name}_MD_no_CO2"\n')
         f_sh.write(f'#SBATCH --output="out.{name}_MD_no_CO2"\n')
         f_sh.write(f'#SBATCH --partition={partition_MD}\n')
+        if partition_ML == 'gpu':
+            f_sh.write('#SBATCH --gpus=1\n')
         f_sh.write('#SBATCH --constraint="lustre"\n')
         f_sh.write(f'#SBATCH --nodes={nodes_MD}\n')
         f_sh.write(f'#SBATCH --ntasks-per-node={ntaskspernode_MD}\n')
@@ -215,10 +233,16 @@ def md_sh(name, partition_MD, nodes_MD, ntaskspernode_MD, mem_MD, account_MD, ti
         f_sh.write(f'#SBATCH -t {time_MD}:00:00\n')
         f_sh.write('\n')
         f_sh.write('module purge\n')
-        f_sh.write('module load cpu\n')
-        f_sh.write('module load gcc/10.2.0/npcyll4\n')
-        f_sh.write('module load openmpi/4.1.1\n')
+        if partition_ML == 'gpu':
+            f_sh.write('module load gpu\n')
+        else:
+            f_sh.write('module load cpu\n')
+            f_sh.write('module load gcc/10.2.0/npcyll4\n')
+            f_sh.write('module load openmpi/4.1.1\n')
         f_sh.write('module load slurm\n')
         f_sh.write('\n')
-        f_sh.write(f'mpirun -np {np_MD} lmp -in in.{name}_no_CO2\n')
+        if partition_ML == 'gpu':
+            f_sh.write(f'lmp -in in.{name}_no_CO2\n')
+        else:
+            f_sh.write(f'mpirun -np {np_MD} lmp -in in.{name}_no_CO2\n')
         f_sh.write('\n')
