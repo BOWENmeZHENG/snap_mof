@@ -16,11 +16,11 @@ module load gcc/10.2.0/npcyll4
 module load openmpi/4.1.1
 module load slurm
 
-name='3.5A_15k'
+name='3.5A_30k'
 loaded_pt='None'
 
 n_start=0
-n_end=15000
+n_end=40000
 
 twojmax=8
 rcutfac=3.5
@@ -43,13 +43,13 @@ fweight=10.0
 partition_ML='compute'
 nodes_ML=1
 ntaskspernode_ML=4
-mem_ML=150
+mem_ML=180
 account_ML='ucb321'
 time_ML=27
 np_ML=4
 
 dt=0.001
-TDAMP=10
+TDAMP=0.1
 run_steps=200000
 
 partition_MD='compute'
